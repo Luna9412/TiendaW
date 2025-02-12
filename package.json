@@ -1,5 +1,5 @@
 {
-  "name": "etienda",
+  "name": "eltienda",
   "version": "1.0.0",
   "description": "ecommerse usando commonjs",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
-  "author": "sebaslg96@gmail.com",
+  "author": "jdluna9412@gmail.com",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
