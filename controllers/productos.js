@@ -1,11 +1,11 @@
 // controlador para el manejo de los productos
 //conectamos el controlador con su modelo correspondiente
-let producto = require('../models/productos')
+let Producto = require('../models/productos')
 //toda la logica de un crud típico listartodos, listarpor id, crear, actualizar, borrar...
 const listartodos = async(req, res)=>{
 try {
     //consultar todos sin filtro
-    let listarProductos = await producto.find().exec()
+    let listarProductos = await Producto.find().exec()
     res.status(200).send({
         exito:true,
         listarProductos
@@ -33,7 +33,7 @@ const nuevo = async (req, res) =>{
     };
     try{
         // instancia del modelo producto (collection)
-    const productoNuevo = new producto(datos)
+    const productoNuevo = new Producto(datos)
     productoNuevo.save() // escribe en mongo
 
     return res.send({
@@ -55,7 +55,7 @@ const buscarPorID = async (req, res)=>{
     let id = req.params.id;
 try {
     //logica de buscar y mostar el resultado del query
-    let consulta = await producto.findById(id).exec();
+    let consulta = await Producto.findById(id).exec();
     return res.send({
         estado:true,
         mensaje: "Busqueda existosa!",
@@ -89,7 +89,7 @@ let payload = {
 };
 
 try {
-    let consulta = await producto.findByIdAndUpdate(id,payload).exec();
+    let consulta = await Producto.findByIdAndUpdate(id,payload).exec();
     return res.send({
         estado: true,
         mensaje: "documento creado!",
@@ -113,7 +113,7 @@ const borrarPorID= async(req, res)=>{
     let id = req.params.id;
 
     try {
-        let consulta = await producto.findOneAndDelete({_id:id}).exec();
+        let consulta = await Producto.findOneAndDelete({_id:id}).exec();
         //let consulta= await producto.findByIdAndDelete(id).exec();
         return res.send({
             estado:true,
