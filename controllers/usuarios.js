@@ -20,7 +20,6 @@ try {
 }
 };
 
-
 module.exports = {
     listartodos
 }
