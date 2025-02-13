@@ -40,4 +40,4 @@ const usuarioSchema = Schema(
         },
         {collection:"usuarios"}
 );
-module.exports=model('Usuario', usuarioSchema)
+module.exports=model('Usuarios', usuarioSchema)
