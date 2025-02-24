@@ -1,8 +1,6 @@
-//instanciamos la capa modelo correspondiente
 let bcrypt = require("bcryptjs")
 let Usuarios = require('../models/usuarios');
 let jwt = require("jsonwebtoken");
-// funciones de la libreria - metodos de la clase
 const listartodos = async(req, res)=>{
 try {
     //consultar todos sin filtro
@@ -18,6 +16,16 @@ try {
     })
 }
 };
+/**
+@description Funcion que hace la creacion o registro de los usuarios del sistema
+@author Juan Luna
+@param req la peticion de con la data del formulario del registro del usuario
+@param res falso si no existe el usuario, true y mensaje de exito si se crea, false y mensaje de error si no ingresa la password
+@version 0.1 -24-02-2025
+@callback funcion asincronica que ejecuta la API
+@function registro en el sistema
+@classs Usuarios
+*/
 const registro = async (req, res) => {
     //recibir la data
     let data = {
@@ -54,25 +62,26 @@ const registro = async (req, res) => {
             });
         }
     };
-    //login tradicional : autenticacion de un factor
-    const login = async (req, res) => {
-    // recibir data: user / pass
+/**
+@description Funcion que hace el login o ingreso al sistema con autenticacion de 2 factores
+@author Juan Luna
+@param req la peticion con usuario y password
+@param res falso si no existe el usuario, si existe devuelve true y el token en formato json con ventana de vida de 4H
+@version 0.1 -24-02-2025
+@callback funcion asincronica que ejecuta la API
+@function login del sistema
+*/
+    const login = async function(req, res) {
         let data = req.body.email;
-        //validar que el usuario exista en la bd
         let usuarioExiste = await Usuarios.findOne({ email: data });
-        //console.log(usuarioExiste);
         if (!usuarioExiste) {
             return res.send({
             estado: false,
             mensaje: "¡Usuario no existe en la Bd!",
             });
         }
-        //validar credenciales
         if(usuarioExiste && bcrypt.compareSync(req.body.password, usuarioExiste.passwordHash)){
-        //autenticacion de 2 factores con generacion del token
-            
             const token = jwt.sign(
-                // datos a codificar en el token
                 {
                 userId: usuarioExiste.id,
                 isAdmin: usuarioExiste.esAdmin

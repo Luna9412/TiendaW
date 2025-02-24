@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "jsdoc -c jsdoc.json",
     "start": "nodemon index.js"
   },
   "author": "jdluna9412@gmail.com",
@@ -16,5 +17,8 @@
     "mongoose": "^8.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.9"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.4"
   }
 }

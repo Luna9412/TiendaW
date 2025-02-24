@@ -1,7 +1,7 @@
 // controlador para el manejo de los productos
 //conectamos el controlador con su modelo correspondiente
 let Producto = require('../models/productos')
-//toda la logica de un crud típico listartodos, listarpor id, crear, actualizar, borrar...
+
 const listartodos = async(req, res)=>{
 try {
     //consultar todos sin filtro
@@ -17,9 +17,18 @@ try {
     })
 }
 };
-//crear nuevo
+/**
+@description Funcion que hace la creacion o registro de los productos del sistema
+@author Juan Luna
+@param req la peticion de con la data del formulario del registro del producto
+@param res falso si no existe el producto, true y mensaje de exito si se crea, false si ya esta creado
+@version 0.1 -24-02-2025
+@callback funcion asincronica que ejecuta la API
+@function registro en el sistema
+@classs Productos
+*/
 const nuevo = async (req, res) =>{
-    // llega el objeto en el body del request
+
     let datos = {
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
